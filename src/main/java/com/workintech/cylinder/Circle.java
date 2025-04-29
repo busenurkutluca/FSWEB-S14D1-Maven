@@ -3,16 +3,18 @@ package com.workintech.cylinder;
 public class Circle {
     private double radius;
 
+    // Constructor
     public Circle(double radius) {
-        this.radius = radius < 0 ? 0 : radius;
+        this.radius = Math.max(0, radius); // Negatifse 0
     }
 
+    // Getter
     public double getRadius() {
         return radius;
     }
 
-    public double getArea(){
+    // Alan hesaplama
+    public double getArea() {
         return radius * radius * Math.PI;
     }
-
 }

@@ -1,47 +1,62 @@
 package com.workintech.developers;
 
-
 public class HRManager extends Employee {
     private JuniorDeveloper[] juniorDevelopers;
     private MidDeveloper[] midDevelopers;
     private SeniorDeveloper[] seniorDevelopers;
 
-    public HRManager(int id, String name, double salary) {
+    // Constructor
+    public HRManager(int id, String name, double salary, int juniorSize, int midSize, int seniorSize) {
         super(id, name, salary);
-        this.juniorDevelopers = new JuniorDeveloper[5]; // Varsayılan boyut
-        this.midDevelopers = new MidDeveloper[5];
-        this.seniorDevelopers = new SeniorDeveloper[5];
+        this.juniorDevelopers = new JuniorDeveloper[juniorSize];
+        this.midDevelopers = new MidDeveloper[midSize];
+        this.seniorDevelopers = new SeniorDeveloper[seniorSize];
     }
 
+    // Work metodu (Override)
     @Override
     public void work() {
-        System.out.println("HRManager starts managing employees.");
+        System.out.println(getName() + " HR Manager starts to managing HR operations");
+        setSalary(getSalary() + 500); // Maaş artışı
     }
 
-    // Add JuniorDeveloper
-    public void addEmployee(JuniorDeveloper junior) {
-        addDeveloper(junior, juniorDevelopers);
-    }
-
-    // Add MidDeveloper
-    public void addEmployee(MidDeveloper mid) {
-        addDeveloper(mid, midDevelopers);
-    }
-
-    // Add SeniorDeveloper
-    public void addEmployee(SeniorDeveloper senior) {
-        addDeveloper(senior, seniorDevelopers);
-    }
-
-    // Generic method to add developers to the correct array
-    private <T> void addDeveloper(T developer, T[] developers) {
-        for (int i = 0; i < developers.length; i++) {
-            if (developers[i] == null) {
-                developers[i] = developer;
-                System.out.println(developer.getClass().getSimpleName() + " added.");
-                return;
-            }
+    // addEmployee metotları (Overloading)
+    public void addEmployee(int index, JuniorDeveloper developer) {
+        if (index < 0 || index >= juniorDevelopers.length) {
+            System.out.println("Error: Index " + index + " is out of bounds for JuniorDeveloper");
+            return;
         }
-        System.out.println("No available slot for " + developer.getClass().getSimpleName());
+        if (juniorDevelopers[index] != null) {
+            System.out.println("Error: Index " + index + " is already occupied for JuniorDeveloper");
+            return;
+        }
+        juniorDevelopers[index] = developer;
+        System.out.println("JuniorDeveloper " + developer.getName() + " added at index " + index);
+    }
+
+    public void addEmployee(int index, MidDeveloper developer) {
+        if (index < 0 || index >= midDevelopers.length) {
+            System.out.println("Error: Index " + index + " is out of bounds for MidDeveloper");
+            return;
+        }
+        if (midDevelopers[index] != null) {
+            System.out.println("Error: Index " + index + " is already occupied for MidDeveloper");
+            return;
+        }
+        midDevelopers[index] = developer;
+        System.out.println("MidDeveloper " + developer.getName() + " added at index " + index);
+    }
+
+    public void addEmployee(int index, SeniorDeveloper developer) {
+        if (index < 0 || index >= seniorDevelopers.length) {
+            System.out.println("Error: Index " + index + " is out of bounds for SeniorDeveloper");
+            return;
+        }
+        if (seniorDevelopers[index] != null) {
+            System.out.println("Error: Index " + index + " is already occupied for SeniorDeveloper");
+            return;
+        }
+        seniorDevelopers[index] = developer;
+        System.out.println("SeniorDeveloper " + developer.getName() + " added at index " + index);
     }
 }

@@ -1,18 +1,21 @@
 package com.workintech.pool;
 
 public class Cuboid extends Rectangle {
-private  double height;
-    public Cuboid(double width, double lenght, double height) {
-        super(width, lenght);
-        this.height = height< 0 ? 0 :height;
+    private double height;
+
+    // Constructor
+    public Cuboid(double width, double length, double height) {
+        super(width, length);
+        this.height = Math.max(0, height); // Negatifse 0
     }
 
+    // Getter
     public double getHeight() {
         return height;
     }
+
+    // Hacim hesaplama
     public double getVolume() {
-        return super.getArea()*this.getHeight();
+        return getArea() * height;
     }
-
-
 }

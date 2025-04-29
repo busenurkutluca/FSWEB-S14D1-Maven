@@ -5,12 +5,14 @@ public class Employee {
     private String name;
     private double salary;
 
+    // Constructor
     public Employee(int id, String name, double salary) {
         this.id = id;
-        this.name=name;
-        this.salary=salary;
+        this.name = name;
+        this.salary = salary;
     }
 
+    // Getter ve Setter
     public int getId() {
         return id;
     }
@@ -35,8 +37,8 @@ public class Employee {
         this.salary = salary;
     }
 
+    // Work metodu
     public void work() {
         System.out.println("Employee starts to working");
     }
-
 }
